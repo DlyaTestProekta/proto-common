@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package ru.pachan.proto_common.reader;
+
+option java_package = "ru.pachan.grpc";
+
+message Notification {
+  int64 notification_id = 1;
+  int64 person_id = 2;
+  int64 count = 3;
+}
+
+message FindByPersonIdNotificationRequest {
+  int64 person_id = 1;
+}
+
+message FindByPersonIdNotificationResponse {
+  Notification notification = 1;
+}
+
+message FindByIdNotificationRequest {
+  int64 notification_id = 1;
+}
+
+message FindByIdNotificationResponse {
+  Notification notification = 1;
+}
+
+service NotificationService {
+  rpc FindByPersonIdNotification (FindByPersonIdNotificationRequest) returns (FindByPersonIdNotificationResponse);
+  rpc FindByIdNotification (FindByIdNotificationRequest) returns (FindByIdNotificationResponse);
+}
